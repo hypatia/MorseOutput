@@ -146,7 +146,7 @@ void MorseOutput::encode(char letter)
 {
   const char *code;
 
-  if (letter > 32 || letter >= 122)
+  if (letter > 32 && letter <= 122)
   {
     code = codes[letter - 32];
 
