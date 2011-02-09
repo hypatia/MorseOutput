@@ -150,12 +150,14 @@ void MorseOutput::encode(char letter)
   {
     code = codes[letter - 32];
 
+    // go through each character in the morse code and blink it out
     for (int j = 0; code[j] != NULL; j++)
     {
       if (code[j] == '.') dot();
       if (code[j] == '-') dash();
     }
   }
+  // this just applies for spaces
   else if (letter == 32) 
   {
     delay(speed*4);
