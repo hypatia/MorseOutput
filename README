@@ -1,1 +1,4 @@
-Morse code output library for Arduino.
+Morse code output library for Arduino.  Currently only speaks
+international Morse.  After setting up a MorseOutput object with the
+desired pin number and words per minute value, the encode() method
+outputs a single character of morse code to that pin at the set rate.
