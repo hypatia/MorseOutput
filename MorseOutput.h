@@ -19,6 +19,7 @@ class MorseOutput
   private:
     void dot();
     void dash();
+    void space();
     int _pin;
     int _wpm;
 };

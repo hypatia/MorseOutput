@@ -9,6 +9,12 @@
 #include "WProgram.h"
 #include "MorseOutput.h"
 
+// We'll calculate the dotting speed according to the PARIS spec:
+// http://en.wikipedia.org/wiki/Morse_code
+// which is basically (1.2 seconds) / WPM
+// Dashes are 3 * speed
+// Further details of inter-character spacing are here:
+// http://en.wikipedia.org/wiki/Morse_code#Representation.2C_timing_and_speeds
 int speed;
 
 MorseOutput::MorseOutput(int pin, int wpm)
@@ -30,16 +36,21 @@ void MorseOutput::dot()
 void MorseOutput::dash()
 {
   digitalWrite(_pin, HIGH);
-  delay(speed*4);
+  delay(speed*3);
   digitalWrite(_pin, LOW);
   delay(speed);
+}
+
+void MorseOutput::space()
+{
+  delay(speed*4);
 }
 
 void MorseOutput::encode(char letter)
 {
   //some code is gonna go here to map letters to dot/dash patterns!
-  digitalWrite(_pin, HIGH);
-  delay(4*speed);
-  digitalWrite(_pin, LOW);
-  delay(speed);
+  dot();
+  dash();
+  //delay at the end of a letter
+  delay(speed*2);
 }
